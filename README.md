@@ -221,6 +221,8 @@ OUT:
 
 ###Przykładowe wywołanie
 
+Aby program zadziałał poprawnie trzeba wczytać plik wejściowy 'wsp_inp.txt'
+Warto mieć na uwadze iż pierwsze 4 linijki w pliku wejściowym to nagłówek, który pomijany w trakcie wczywytania danych. Dodatkowo w kolejnych linijkach są podawane współrzędne X, Y, Z w 3 kolumnach i są one oddzielone przecinkiem. Pomijać te rzeczy program nie wczyta danych wejściowych, a w konsekwencji nie zadziała.
 ```
 Czy chcesz obliczyć odległosc miedzy dwoma punktami?
 >>> tak

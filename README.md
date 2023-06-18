@@ -222,9 +222,9 @@ OUT:
 ###Przykładowe wywołanie
 
 Aby program zadziałał poprawnie trzeba wczytać plik wejściowy 'wsp_inp.txt'
-Warto mieć na uwadze iż pierwsze 4 linijki w pliku wejściowym to nagłówek, który pomijany w trakcie wczywytania danych. Dodatkowo w kolejnych linijkach są podawane współrzędne X, Y, Z w 3 kolumnach i są one oddzielone przecinkiem. Pomijać te rzeczy program nie wczyta danych wejściowych, a w konsekwencji nie zadziała.
-```
-![image](https://github.com/natprz/Transformacje_poprawione/assets/101630559/7959adf1-cb53-4108-a5d5-28f07b5fafa0)
+Warto mieć na uwadze iż pierwsze 4 linijki w pliku wejściowym to nagłówek, który pomijany w trakcie wczywytania danych. Dodatkowo w kolejnych linijkach są podawane współrzędne X, Y, Z w 3 kolumnach i są one oddzielone przecinkiem. Pomijając te rzeczy program nie wczyta danych wejściowych, a w konsekwencji nie zadziała.
+
+![](wywolanie.png)
 
 
 Przy wpisaniu powyższych odpoowiedzi otwrzymujemy plik z danymi wyjściowymi 'wsp_out.txt', a wyniki takiego wywołania prezentują się następująco
@@ -321,5 +321,7 @@ PL-2000 należy skorzystać najpierw z funkcji plh2gk, a następnie z podstawić
 
 Kolejną wadą programu jest to iż współrzędne do stransformowania
 trzeba zapisać w załączonym pliku wsp_inp.txt, ponieważ to z niego program odczytuje współrzędne,
-a następnie przelicza i zapisuje w nowym pliku tekstowym o nazwie wsp_out.txt.
-Program odczytuje tylko współrzędne geocentryczne.
+a następnie przelicza i zapisuje w nowym pliku tekstowym o nazwie wsp_out.txt. Plik z danymi wejściowymi jest przygotowany pod współrzędne geocentryczne.
+Dla współrzędnych geodezyjnych plik musi zostać stworzony w analogiczny sposób.
+
+

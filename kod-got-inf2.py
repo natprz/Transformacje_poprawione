@@ -9,6 +9,11 @@ import math as m
 import numpy as np
 import argparse
 
+parser = argparse.ArgumentParser()
+parser.add_argument('model', choices=["wgs84", "grs80"], help="nazwa modelu")
+parser.add_argument('plik', help="nazwa pliku współrzędnych")
+parser.add_argument('--blh', action="store_true", help="współrzędne wejściowe w formacie BLH")
+
 
 class Transformacje:
     def __init__(self, model: str = 'wgs 84'):
@@ -202,19 +207,20 @@ class Transformacje:
         odl = np.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2 + (z2 - z1) ** 2)
         return odl
 
-    def wczytaj_dane(self, plik):
+    def wczytaj_dane(self, plik, blh=False):
         # dane XYZ geocentryczne
-        parser = argparse.ArgumentParser(description="wspolrzedne")
-        parser.add_argument('-X', '-wspolrzednaX', type=int, metavar='', required=True, help='wsporzedna x')
-        parser.add_argument('-Y', '-wspolrzednaY', type=int, metavar='', required=True, help='wsporzedna y')
-        parser.add_argument('-Z', '-wspolrzednaZ', type=int, metavar='', required=True, help='wsporzedna z')
         tablica = np.genfromtxt(plik, delimiter=',', skip_header=4)
         X = np.array(tablica[:, 0])
         Y = np.array(tablica[:, 1])
         Z = np.array(tablica[:, 2])
-        phi = np.zeros_like(X)
-        lam = np.zeros_like(X)
-        hel = np.zeros_like(X)
+        if blh:
+            phi = X
+            lam = Y
+            hel = Z
+        else:
+            phi = np.zeros_like(X)
+            lam = np.zeros_like(X)
+            hel = np.zeros_like(X)
         XGK = np.zeros_like(X)
         YGK = np.zeros_like(X)
         x2 = np.zeros_like(X)
@@ -225,7 +231,8 @@ class Transformacje:
         y = np.zeros_like(X)
         z = np.zeros_like(X)
         for i in range(0, len(X)):
-            phi[i], lam[i], hel[i] = self.xyz2plh(X[i], Y[i], Z[i])
+            if not blh:
+                phi[i], lam[i], hel[i] = self.xyz2plh(X[i], Y[i], Z[i])
             XGK[i], YGK[i] = self.plh2gk(phi[i], lam[i])
             x2[i], y2[i] = self.gk2pl2(XGK[i], YGK[i])
             x92[i], y92[i] = self.gk2pl92(XGK[i], YGK[i])
@@ -277,7 +284,7 @@ class Transformacje:
 
 
 if __name__ == '__main__':
-    # utworzenie obietku
-    geo = Transformacje(model="grs80")
-    parametry = geo.wczytaj_dane("wsp_inp.txt")
+    args = parser.parse_args()
+    geo = Transformacje(model=args.model)
+    parametry = geo.wczytaj_dane(args.plik, args.blh)
     geo.uruchom(*parametry)

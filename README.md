@@ -224,21 +224,8 @@ OUT:
 Aby program zadziałał poprawnie trzeba wczytać plik wejściowy 'wsp_inp.txt'
 Warto mieć na uwadze iż pierwsze 4 linijki w pliku wejściowym to nagłówek, który pomijany w trakcie wczywytania danych. Dodatkowo w kolejnych linijkach są podawane współrzędne X, Y, Z w 3 kolumnach i są one oddzielone przecinkiem. Pomijać te rzeczy program nie wczyta danych wejściowych, a w konsekwencji nie zadziała.
 ```
-Czy chcesz obliczyć odległosc miedzy dwoma punktami?
->>> tak
+![image](https://github.com/natprz/Transformacje_poprawione/assets/101630559/7959adf1-cb53-4108-a5d5-28f07b5fafa0)
 
-Podaj numer pierwszego punku:
->>> 2
-
-Podaj numer drugiego punktu:
->>> 3
-
-Chcesz policzyć odległosć 2D czy 3D?
->>> 2D
-
-Czy chcesz policzyć jeszcze odległosc 3D?
->>> nie
-```
 
 Przy wpisaniu powyższych odpoowiedzi otwrzymujemy plik z danymi wyjściowymi 'wsp_out.txt', a wyniki takiego wywołania prezentują się następująco
 
@@ -335,3 +322,4 @@ PL-2000 należy skorzystać najpierw z funkcji plh2gk, a następnie z podstawić
 Kolejną wadą programu jest to iż współrzędne do stransformowania
 trzeba zapisać w załączonym pliku wsp_inp.txt, ponieważ to z niego program odczytuje współrzędne,
 a następnie przelicza i zapisuje w nowym pliku tekstowym o nazwie wsp_out.txt.
+Program odczytuje tylko współrzędne geocentryczne.
